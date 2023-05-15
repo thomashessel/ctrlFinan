@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ths_itensLancamento")
+@Table(name="ths_itenslancamento")
 public class ItensLancamento {
 
 	@Id 
@@ -21,19 +21,19 @@ public class ItensLancamento {
 	@Column (name="tp_lancamento")
 	private TpLancamento tpLancamento;
 	
-	@Column (name="st_vlFixo")
+	@Column (name="st_vlfixo")
 	private Boolean statusValorFixo;
 	
-	@Column (name="vlFixo")
+	@Column (name="vlfixo")
 	private Double valorFixo;
 	
-	@Column (name="vlPrevisto")
+	@Column (name="vlprevisto")
 	private Double valorPrevisto;
 	
-	@Column (name="vlReal")
+	@Column (name="vlreal")
 	private Double valorReal;
 	
-	@Column (name="st_dtFixa")
+	@Column (name="st_dtfixa")
 	private Boolean statusDataFixa;
 	
 	private Integer diaFixo;
