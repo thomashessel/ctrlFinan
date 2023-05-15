@@ -24,6 +24,7 @@ public class SubItemLancamento {
 	@JoinColumn(name="id_itemlancamento")
 	private ItensLancamento idItensLancamento;
 	
+	@Column (name="descricaosub")
 	private String descricaoSub;
 	
 	@Column (name="dt_lancada")
