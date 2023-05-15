@@ -1,0 +1,2 @@
+insert into THS_ITENS_LANCAMENTO (id,descricao,tp_lancamento,st_vl_Fixo,vl_Fixo,vl_Previsto,vl_Real,st_dt_Fixa,dia_Fixo) values  (1,'salario',1,1,3500,null,null,1,30)
+insert into THS_ITENS_LANCAMENTO (id,descricao,tp_lancamento,st_vl_Fixo,vl_Fixo,vl_Previsto,vl_Real,st_dt_Fixa,dia_Fixo) values  (2,'adiantamento',1,1,1532.5,null,null,1,15)
