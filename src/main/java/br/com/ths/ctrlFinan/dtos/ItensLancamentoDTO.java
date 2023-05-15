@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 import br.com.ths.ctrlFinan.Entities.ItensLancamento;
 import br.com.ths.ctrlFinan.enums.TpLancamento;
 
-public class ItenLancamentoDTO {
+public class ItensLancamentoDTO {
 
 	private Long id;
 	private String descricao;
@@ -19,9 +19,9 @@ public class ItenLancamentoDTO {
 	private Boolean statusDataFixa;
 	private Integer diaFixo;
 	
-	public ItenLancamentoDTO() {}
+	public ItensLancamentoDTO() {}
 
-	public ItenLancamentoDTO(Long id, String descricao, TpLancamento tpLancamento, Boolean statusValorFixo,
+	public ItensLancamentoDTO(Long id, String descricao, TpLancamento tpLancamento, Boolean statusValorFixo,
 			Double valorFixo, Double valorPrevisto, Double valorReal, Boolean statusDataFixa, Integer diaFixo) {
 		this.id = id;
 		this.descricao = descricao;
@@ -33,7 +33,7 @@ public class ItenLancamentoDTO {
 		this.statusDataFixa = statusDataFixa;
 		this.diaFixo = diaFixo;
 	}
-	public ItenLancamentoDTO(ItensLancamento entity) {
+	public ItensLancamentoDTO(ItensLancamento entity) {
 		BeanUtils.copyProperties(entity, this);
 	}
 
@@ -122,7 +122,7 @@ public class ItenLancamentoDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItenLancamentoDTO other = (ItenLancamentoDTO) obj;
+		ItensLancamentoDTO other = (ItensLancamentoDTO) obj;
 		return Objects.equals(id, other.id);
 	}
 	
