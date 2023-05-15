@@ -3,6 +3,8 @@ package br.com.ths.ctrlFinan.Entities;
 import java.util.Date;
 import java.util.Objects;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +34,13 @@ public class SubItemLancamento {
 	
 	@Column (name="vl_lancada")
 	private Double valorLancada;
+	
+	@CreatedDate
+	@Column (name="dtcriacao", columnDefinition = "DATE")
+	private Date dataCriacao;
+	@CreatedDate
+	@Column (name="dtalteracao" , columnDefinition = "DATE")
+	private Date dataAlteracao;
 	
 	public SubItemLancamento() {}
 

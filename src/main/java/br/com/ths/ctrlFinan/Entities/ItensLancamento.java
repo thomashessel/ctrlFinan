@@ -1,6 +1,9 @@
 package br.com.ths.ctrlFinan.Entities;
 
+import java.util.Date;
 import java.util.Objects;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import br.com.ths.ctrlFinan.enums.TpLancamento;
 import jakarta.persistence.Column;
@@ -35,6 +38,12 @@ public class ItensLancamento {
 	
 	@Column (name="st_dtfixa")
 	private Boolean statusDataFixa;
+	@CreatedDate
+	@Column (name="dtcriacao", columnDefinition = "DATE")
+	private Date dataCriacao;
+	@CreatedDate
+	@Column (name="dtalteracao" , columnDefinition = "DATE")
+	private Date dataAlteracao;
 	
 	private Integer diaFixo;
 	
