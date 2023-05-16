@@ -5,3 +5,13 @@ insert into THS_ITENSLANCAMENTO (id,descricao,tp_lancamento,st_vlFixo,vlFixo,vlP
 insert into THS_SUBITEMLANCAMENTO (id,dt_lancada,descricaosub,vl_lancada,id_itemlancamento) values (1,'2023-04-20','Lanchonete final semanda',133.45,1)
 insert into THS_SUBITEMLANCAMENTO (id,dt_lancada,descricaosub,vl_lancada,id_itemlancamento) values (2,'2023-04-27','Restaurante Safari',101.45,1)
 insert into THS_SUBITEMLANCAMENTO (id,dt_lancada,descricaosub,vl_lancada,id_itemlancamento) values (3,'2023-05-25','troca de oleo',37.9,2)
+
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (1,1,2023,03,'2023-04-13',133.25,'2023-05-01')
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (2,2,2023,04,'2023-04-13',134.45,'2023-05-01')
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (3,3,2023,05,'2023-04-13',135.65,'2023-05-01')
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (4,1,2023,03,'2023-04-13',136.85,'2023-05-01')
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (5,2,2023,04,'2023-04-13',137.25,'2023-05-01')
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (6,3,2023,05,'2023-04-13',138.45,'2023-05-01')
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (7,1,2023,03,'2023-04-13',139.65,'2023-05-01')
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (8,2,2023,04,'2023-04-13',140.85,'2023-05-01')
+insert into ths_lancamentos (id,id_itemlancamento,ano,mes,dtlancamento,vllancamento,dtcriacao) values (9,3,2023,05,'2023-04-13',141.05,'2023-05-01')

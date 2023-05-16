@@ -3,15 +3,36 @@ package br.com.ths.ctrlFinan.Entities;
 import java.util.Date;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table (name="ths_lancamentos")
 public class Lancamento {
 	
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@ManyToOne
+	@JoinColumn(name="id_itemlancamento")
 	private ItensLancamento IdItemLancamento;
+	
 	private Integer ano;
 	private Integer mes;
+	@Column (name="dtlancamento")
 	private Date dataLancamento;
+	@Column (name="vllancamento")
 	private Double valorLancamento;
+	@Column (name="dtcriacao")
 	private Date dataCriacao;
+	@Column (name="dtalteracao")
 	private Date dataAlteracao;
 	
 	public Lancamento() {}
