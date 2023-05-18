@@ -14,20 +14,16 @@ public class LancamentoDTO {
 	private Date dataLancamento;
 	private Double valorLancamento;
 	private ItensLancamento idItemLancamento;
-	private Date dataCriacao;
-	private Date dataAlteracao;
 	
 	public LancamentoDTO() {}
 
 	public LancamentoDTO(Long id, Integer ano, Integer mes, Date dataLancamento,
-			Double valorLancamento, Date dataCriacao, Date dataAlteracao,ItensLancamento idItemLancamento) {
+			Double valorLancamento, ItensLancamento idItemLancamento) {
 		this.id = id;
 		this.ano = ano;
 		this.mes = mes;
 		this.dataLancamento = dataLancamento;
 		this.valorLancamento = valorLancamento;
-		this.dataCriacao = dataCriacao;
-		this.dataAlteracao = dataAlteracao;
 		this.idItemLancamento = idItemLancamento;
 	}
 
@@ -39,8 +35,6 @@ public class LancamentoDTO {
 		this.dataLancamento = entity.getDataLancamento();
 		this.valorLancamento = entity.getValorLancamento();
 		this.idItemLancamento = entity.getIdItemLancamento();
-		this.dataCriacao = getDataCriacao();
-		this.dataAlteracao = getDataAlteracao();
 	}
 
 	public Long getId() {
@@ -91,21 +85,6 @@ public class LancamentoDTO {
 		this.valorLancamento = valorLancamento;
 	}
 
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
 
 	@Override
 	public int hashCode() {

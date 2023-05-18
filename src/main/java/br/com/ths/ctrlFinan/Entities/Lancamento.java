@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,6 +35,7 @@ public class Lancamento {
 	
 	@Column (name="dtcriacao", updatable = false)
 	private LocalDate dataCriacao;
+	
 	@Column (name="dtalteracao")
 	private LocalDate dataAlteracao;
 	
@@ -47,6 +49,7 @@ public class Lancamento {
 		this.dataLancamento = dataLancamento;
 		this.valorLancamento = valorLancamento;
 		IdItemLancamento = idItemLancamento;
+		
 	}
 	
 	public Long getId() {
@@ -126,9 +129,9 @@ public class Lancamento {
 	public void obterDataAtualCriacao() {
 		this.dataCriacao=LocalDate.now();
 	}
-	@PrePersist
+	@PreUpdate
 	public void obterDataAtualAtualizacao() {
-		this.dataCriacao=LocalDate.now();
+		this.dataAlteracao=LocalDate.now();
 	}
 
 }

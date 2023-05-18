@@ -19,4 +19,14 @@ public class LancamentoService {
 		List<Lancamento> result = repositorio.findAll();	
 		return result.stream().map(x -> new LancamentoDTO(x)).toList();
 	}
+	
+	public LancamentoDTO salvaNovoLancamento(Lancamento lancamento) {
+		/*
+		 * Lancamento result = new Lancamento( dto.getId(), dto.getAno(), dto.getMes(),
+		 * dto.getDataLancamento(), dto.getValorLancamento(), dto.getIdItemLancamento()
+		 * );
+		 */
+		return new LancamentoDTO( repositorio.save(lancamento));
+		
+	}
 }
