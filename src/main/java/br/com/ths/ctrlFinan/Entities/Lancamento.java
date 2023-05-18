@@ -1,5 +1,6 @@
 package br.com.ths.ctrlFinan.Entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,36 +21,34 @@ public class Lancamento {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name="id_itemlancamento")
-	private ItensLancamento IdItemLancamento;
-	
 	private Integer ano;
 	private Integer mes;
 	@Column (name="dtlancamento")
 	private Date dataLancamento;
 	@Column (name="vllancamento")
 	private Double valorLancamento;
-	@Column (name="dtcriacao")
-	private Date dataCriacao;
+	
+	@ManyToOne
+	@JoinColumn(name="id_itemlancamento")
+	private ItensLancamento IdItemLancamento;
+	
+	@Column (name="dtcriacao", updatable = false)
+	private LocalDate dataCriacao;
 	@Column (name="dtalteracao")
-	private Date dataAlteracao;
+	private LocalDate dataAlteracao;
 	
 	public Lancamento() {}
 
-	public Lancamento(Long id, ItensLancamento idItemLancamento, Integer ano, Integer mes, Date dataLancamento,
-			Double valorLancamento, Date dataCriacao, Date dataAlteracao) {
+	public Lancamento(Long id, Integer ano, Integer mes, Date dataLancamento,
+			Double valorLancamento,ItensLancamento idItemLancamento) {
 		this.id = id;
-		IdItemLancamento = idItemLancamento;
 		this.ano = ano;
 		this.mes = mes;
 		this.dataLancamento = dataLancamento;
 		this.valorLancamento = valorLancamento;
-		this.dataCriacao = dataCriacao;
-		this.dataAlteracao = dataAlteracao;
+		IdItemLancamento = idItemLancamento;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -97,20 +97,12 @@ public class Lancamento {
 		this.valorLancamento = valorLancamento;
 	}
 
-	public Date getDataCriacao() {
+	public LocalDate getDataCriacao() {
 		return dataCriacao;
 	}
-
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-
-	public Date getDataAlteracao() {
+	
+	public LocalDate getDataAlteracao() {
 		return dataAlteracao;
-	}
-
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
 	}
 
 	@Override
@@ -130,6 +122,13 @@ public class Lancamento {
 		return Objects.equals(id, other.id);
 	}
 	
-	
+	@PrePersist
+	public void obterDataAtualCriacao() {
+		this.dataCriacao=LocalDate.now();
+	}
+	@PrePersist
+	public void obterDataAtualAtualizacao() {
+		this.dataCriacao=LocalDate.now();
+	}
 
 }

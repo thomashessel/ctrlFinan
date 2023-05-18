@@ -9,36 +9,36 @@ import br.com.ths.ctrlFinan.Entities.Lancamento;
 public class LancamentoDTO {
 
 	private Long id;
-	private ItensLancamento idItemLancamento;
 	private Integer ano;
 	private Integer mes;
 	private Date dataLancamento;
 	private Double valorLancamento;
+	private ItensLancamento idItemLancamento;
 	private Date dataCriacao;
 	private Date dataAlteracao;
 	
 	public LancamentoDTO() {}
 
-	public LancamentoDTO(Long id, ItensLancamento idItemLancamento, Integer ano, Integer mes, Date dataLancamento,
-			Double valorLancamento, Date dataCriacao, Date dataAlteracao) {
+	public LancamentoDTO(Long id, Integer ano, Integer mes, Date dataLancamento,
+			Double valorLancamento, Date dataCriacao, Date dataAlteracao,ItensLancamento idItemLancamento) {
 		this.id = id;
-		this.idItemLancamento = idItemLancamento;
 		this.ano = ano;
 		this.mes = mes;
 		this.dataLancamento = dataLancamento;
 		this.valorLancamento = valorLancamento;
 		this.dataCriacao = dataCriacao;
 		this.dataAlteracao = dataAlteracao;
+		this.idItemLancamento = idItemLancamento;
 	}
 
 	
 	public LancamentoDTO(Lancamento entity) {
 		this.id = entity.getId();
-		this.idItemLancamento = entity.getIdItemLancamento();
 		this.ano = entity.getAno();
 		this.mes = entity.getMes();
 		this.dataLancamento = entity.getDataLancamento();
 		this.valorLancamento = entity.getValorLancamento();
+		this.idItemLancamento = entity.getIdItemLancamento();
 		this.dataCriacao = getDataCriacao();
 		this.dataAlteracao = getDataAlteracao();
 	}
