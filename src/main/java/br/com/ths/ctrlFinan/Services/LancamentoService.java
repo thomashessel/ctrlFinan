@@ -26,19 +26,12 @@ public class LancamentoService {
 		return result.stream().map(x -> new LancamentoComObjItemDTO(x)).toList();
 		
 	}
-	
-	public LancamentoComObjItemDTO salvaNovoLancamento(Lancamento lancamento) {
-
-		Optional<ItensLancamento> findById = itensRepositorio.findById(lancamento.getIdItemLancamento().getId());
-		
-		if(findById.isPresent()) {
-			ItensLancamento itensLancamento = findById.get();
-			lancamento.setIdItemLancamento(itensLancamento);
-			return new LancamentoComObjItemDTO( repositorio.save(lancamento));
-		}
-		return null;		
+	public LancamentoSemObjItemDTO findByIdLancamento(Long id) {
+		Optional<Lancamento> result = repositorio.findById(id);	
+		return new LancamentoSemObjItemDTO(result.orElse(null));
 	}
 	
+
 	public LancamentoSemObjItemDTO salvaNovoLancamento(LancamentoSemObjItemDTO lancamento) {
 		Optional<ItensLancamento> itenlancamento =itensRepositorio.findById(lancamento.getIdItemLancamento());
 		if(itenlancamento.isPresent()) {

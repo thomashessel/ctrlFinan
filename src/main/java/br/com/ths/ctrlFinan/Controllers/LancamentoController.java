@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +28,12 @@ public class LancamentoController {
 	public List<LancamentoComObjItemDTO> findAll(){
 		return service.findAllLancamento();
 	}
-	@PostMapping  (value="/comitem")
-	public Long SalvaNovoLancamento(@RequestBody Lancamento lancamento) {
-		return service.salvaNovoLancamento(lancamento).getId();
+	@GetMapping (value="/{id}")
+	public LancamentoSemObjItemDTO findById(@PathVariable Long id){
+		return service.findByIdLancamento(id);
 	}
-	@PostMapping (value="/semitem")
+	
+	@PostMapping (value="/novo")
 	public LancamentoSemObjItemDTO SalvaNovoLancamento(@RequestBody LancamentoSemObjItemDTO lancamento) {
 		return service.salvaNovoLancamento(lancamento);
 	}
