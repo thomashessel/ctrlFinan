@@ -6,7 +6,7 @@ import java.util.Objects;
 import br.com.ths.ctrlFinan.Entities.ItensLancamento;
 import br.com.ths.ctrlFinan.Entities.Lancamento;
 
-public class LancamentoDTO {
+public class LancamentoComObjItemDTO {
 
 	private Long id;
 	private Integer ano;
@@ -15,9 +15,9 @@ public class LancamentoDTO {
 	private Double valorLancamento;
 	private ItensLancamento idItemLancamento;
 	
-	public LancamentoDTO() {}
+	public LancamentoComObjItemDTO() {}
 
-	public LancamentoDTO(Long id, Integer ano, Integer mes, Date dataLancamento,
+	public LancamentoComObjItemDTO(Long id, Integer ano, Integer mes, Date dataLancamento,
 			Double valorLancamento, ItensLancamento idItemLancamento) {
 		this.id = id;
 		this.ano = ano;
@@ -28,7 +28,7 @@ public class LancamentoDTO {
 	}
 
 	
-	public LancamentoDTO(Lancamento entity) {
+	public LancamentoComObjItemDTO(Lancamento entity) {
 		this.id = entity.getId();
 		this.ano = entity.getAno();
 		this.mes = entity.getMes();
@@ -99,7 +99,7 @@ public class LancamentoDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LancamentoDTO other = (LancamentoDTO) obj;
+		LancamentoComObjItemDTO other = (LancamentoComObjItemDTO) obj;
 		return Objects.equals(id, other.id);
 	}
 	

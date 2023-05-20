@@ -10,7 +10,8 @@ import br.com.ths.ctrlFinan.Entities.ItensLancamento;
 import br.com.ths.ctrlFinan.Entities.Lancamento;
 import br.com.ths.ctrlFinan.Repositories.ItensLancamentoRepository;
 import br.com.ths.ctrlFinan.Repositories.LancamentoRepository;
-import br.com.ths.ctrlFinan.dtos.LancamentoDTO;
+import br.com.ths.ctrlFinan.dtos.LancamentoComObjItemDTO;
+import br.com.ths.ctrlFinan.dtos.LancamentoSemObjItemDTO;
 
 @Service
 public class LancamentoService {
@@ -20,27 +21,31 @@ public class LancamentoService {
 	@Autowired
 	private ItensLancamentoRepository itensRepositorio;
 	
-	public List<LancamentoDTO> findAllLancamento(){
+	public List<LancamentoComObjItemDTO> findAllLancamento(){
 		List<Lancamento> result = repositorio.findAll();	
-		return result.stream().map(x -> new LancamentoDTO(x)).toList();
+		return result.stream().map(x -> new LancamentoComObjItemDTO(x)).toList();
 		
 	}
 	
-	public LancamentoDTO salvaNovoLancamento(Lancamento lancamento) {
-		/*
-		 * Lancamento result = new Lancamento( dto.getId(), dto.getAno(), dto.getMes(),
-		 * dto.getDataLancamento(), dto.getValorLancamento(), dto.getIdItemLancamento()
-		 * );
-		 */
+	public LancamentoComObjItemDTO salvaNovoLancamento(Lancamento lancamento) {
+
 		Optional<ItensLancamento> findById = itensRepositorio.findById(lancamento.getIdItemLancamento().getId());
 		
 		if(findById.isPresent()) {
 			ItensLancamento itensLancamento = findById.get();
 			lancamento.setIdItemLancamento(itensLancamento);
-			return new LancamentoDTO( repositorio.save(lancamento));
+			return new LancamentoComObjItemDTO( repositorio.save(lancamento));
 		}
-		return null;
-		
+		return null;		
 	}
 	
+	public LancamentoSemObjItemDTO salvaNovoLancamento(LancamentoSemObjItemDTO lancamento) {
+		Optional<ItensLancamento> itenlancamento =itensRepositorio.findById(lancamento.getIdItemLancamento());
+		if(itenlancamento.isPresent()) {
+			Lancamento result = new Lancamento(lancamento.getId(),lancamento.getAno(),lancamento.getMes(),
+					lancamento.getDataLancamento(),lancamento.getValorLancamento(),itenlancamento.get());
+			return new LancamentoSemObjItemDTO(repositorio.save(result));
+		}
+		return null;
+	}
 }

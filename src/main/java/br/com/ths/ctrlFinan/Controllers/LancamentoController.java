@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ths.ctrlFinan.Entities.Lancamento;
 import br.com.ths.ctrlFinan.Services.LancamentoService;
-import br.com.ths.ctrlFinan.dtos.LancamentoDTO;
+import br.com.ths.ctrlFinan.dtos.LancamentoComObjItemDTO;
+import br.com.ths.ctrlFinan.dtos.LancamentoSemObjItemDTO;
 
 
 @RestController
@@ -23,11 +24,15 @@ public class LancamentoController {
 	private LancamentoService service;
 	
 	@GetMapping
-	public List<LancamentoDTO> findAll(){
+	public List<LancamentoComObjItemDTO> findAll(){
 		return service.findAllLancamento();
 	}
-	@PostMapping
+	@PostMapping  (value="/comitem")
 	public Long SalvaNovoLancamento(@RequestBody Lancamento lancamento) {
 		return service.salvaNovoLancamento(lancamento).getId();
+	}
+	@PostMapping (value="/semitem")
+	public LancamentoSemObjItemDTO SalvaNovoLancamento(@RequestBody LancamentoSemObjItemDTO lancamento) {
+		return service.salvaNovoLancamento(lancamento);
 	}
 }

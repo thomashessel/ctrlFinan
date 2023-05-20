@@ -36,7 +36,7 @@ public class Lancamento {
 	@Column (name="dtcriacao", updatable = false)
 	private LocalDate dataCriacao;
 	
-	@Column (name="dtalteracao")
+	@Column (name="dtalteracao", insertable = false)
 	private LocalDate dataAlteracao;
 	
 	public Lancamento() {}
