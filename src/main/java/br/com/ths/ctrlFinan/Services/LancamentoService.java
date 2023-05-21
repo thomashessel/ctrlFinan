@@ -32,7 +32,7 @@ public class LancamentoService {
 		Optional<Lancamento> result = repositorio.findById(id);	
 		return result.isEmpty()? null :new LancamentoSemObjItemDTO(result.get());
 	}
-	
+	@Transactional
 	public LancamentoSemObjItemDTO salvaNovoLancamento(LancamentoSemObjItemDTO lancamento) {
 		Optional<ItensLancamento> itenlancamento =itensRepositorio.findById(lancamento.getIdItemLancamento());
 		if(itenlancamento.isPresent()) {
@@ -43,17 +43,22 @@ public class LancamentoService {
 		return null;
 	}
 	@Transactional
-	public void atualizaLancamento(LancamentoSemObjItemDTO lancamento) {
-		Optional<ItensLancamento> itenlancamento =itensRepositorio.findById(lancamento.getIdItemLancamento());
-		if(itenlancamento.isPresent()) {
-			Lancamento result = new Lancamento(lancamento.getId(),lancamento.getAno(),lancamento.getMes(),
-					lancamento.getDataLancamento(),lancamento.getValorLancamento(),itenlancamento.get());
-//			return new LancamentoSemObjItemDTO(repositorio.save(result));
+	public LancamentoSemObjItemDTO atualizaLancamento(LancamentoSemObjItemDTO lancamento, Long idLancamento) {
+		if(repositorio.existsById(idLancamento)) {
+			if(itensRepositorio.existsById(lancamento.getIdItemLancamento())) {
+				Optional<ItensLancamento> itenlancamento =itensRepositorio.findById(lancamento.getIdItemLancamento());
+				lancamento.setId(idLancamento);
+				Lancamento result = new Lancamento(lancamento.getId(),lancamento.getAno(),lancamento.getMes(),
+						lancamento.getDataLancamento(),lancamento.getValorLancamento(),itenlancamento.get());
+				return new LancamentoSemObjItemDTO(repositorio.save(result));
+			}
 		}
-//		return null;
+		return null;
 	}
 	@Transactional
-	public void deletaLancamento (Long id) {
-		repositorio.deleteById(id);
+	public void deletaLancamento (Long idLancamento) {
+		if(repositorio.existsById(idLancamento)) {
+		repositorio.deleteById(idLancamento);
+		}
 	}
 }
