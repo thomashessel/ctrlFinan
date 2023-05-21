@@ -10,14 +10,14 @@ public class SubItemLancamentoDTO {
 
 	
 	private Long id;
-	private ItensLancamento idItensLancamento;
+	private Long idItensLancamento;
 	private String descricaoSub;
 	private Date dataLancada;
 	private Double valorLancada;
 	
 	public SubItemLancamentoDTO() {}
 	
-	public SubItemLancamentoDTO(Long id, ItensLancamento idItensLancamento, String descricaoSub, Date dataLancada,
+	public SubItemLancamentoDTO(Long id, Long idItensLancamento, String descricaoSub, Date dataLancada,
 			Double valorLancada) {
 		this.id = id;
 		this.idItensLancamento = idItensLancamento;
@@ -26,7 +26,11 @@ public class SubItemLancamentoDTO {
 		this.valorLancada = valorLancada;
 	}
 	public SubItemLancamentoDTO(SubItemLancamento entity) {
-		BeanUtils.copyProperties(entity,this);
+		this.id = entity.getId();
+		this.idItensLancamento = entity.getIdItensLancamento().getId();
+		this.descricaoSub = entity.getDescricaoSub();
+		this.dataLancada = entity.getDataLancada();
+		this.valorLancada = entity.getValorLancada();
 	}
 	
 	public Long getId() {
@@ -37,11 +41,11 @@ public class SubItemLancamentoDTO {
 		this.id = id;
 	}
 
-	public ItensLancamento getIdItensLancamento() {
+	public Long getIdItensLancamento() {
 		return idItensLancamento;
 	}
 
-	public void setIdItensLancamento(ItensLancamento idItensLancamento) {
+	public void setIdItensLancamento(Long idItensLancamento) {
 		this.idItensLancamento = idItensLancamento;
 	}
 
