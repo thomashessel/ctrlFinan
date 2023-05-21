@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ths.ctrlFinan.Entities.Lancamento;
 import br.com.ths.ctrlFinan.Services.LancamentoService;
 import br.com.ths.ctrlFinan.dtos.LancamentoComObjItemDTO;
 import br.com.ths.ctrlFinan.dtos.LancamentoSemObjItemDTO;
@@ -34,7 +34,11 @@ public class LancamentoController {
 	}
 	
 	@PostMapping (value="/novo")
-	public LancamentoSemObjItemDTO SalvaNovoLancamento(@RequestBody LancamentoSemObjItemDTO lancamento) {
+	public LancamentoSemObjItemDTO novoLancamento(@RequestBody LancamentoSemObjItemDTO lancamento) {
+		return service.salvaNovoLancamento(lancamento);
+	}
+	@PutMapping (value="/{id}/atualiza")
+	public LancamentoSemObjItemDTO atualizaLancamento(@PathVariable Long id,@RequestBody LancamentoSemObjItemDTO lancamento) {
 		return service.salvaNovoLancamento(lancamento);
 	}
 }
